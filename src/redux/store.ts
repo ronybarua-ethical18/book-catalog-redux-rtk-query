@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 // import cartReducer from './features/cart/cartSlice';
-import productReducer from './features/products/productSlice';
+import productReducer from './features/books/bookSlice';
+import bookReducer from './features/books/bookSlice';
+import { api } from './api/apiSlice';
 // import { api } from './api/apiSlice';
 // import userReducer from './features/user/userSlice';
 
@@ -8,10 +10,11 @@ const store = configureStore({
   reducer: {
     // cart: cartReducer,
     product: productReducer,
-    // user: userReducer,
-    // [api.reducerPath]: api.reducer,
+    book: bookReducer,
+    [api.reducerPath]: api.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
