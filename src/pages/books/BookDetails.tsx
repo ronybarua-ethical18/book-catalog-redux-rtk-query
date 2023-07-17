@@ -1,7 +1,7 @@
 
 
 import { Button } from '@/components/ui/button';
-import { useSingleProductQuery } from '@/redux/features/books/bookApi';
+import { useSingleBookQuery } from '@/redux/features/books/bookApi';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 export default function ProductDetails() {
   const { id } = useParams();
 
-  const { data: product, isLoading, error } = useSingleProductQuery(id);
+  const { data: product, isLoading, error } = useSingleBookQuery(id);
 
   return (
     <>
