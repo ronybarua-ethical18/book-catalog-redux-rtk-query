@@ -22,6 +22,6 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['books'],
+  tagTypes: ['books', 'singleBook'],
   endpoints: () => ({}),
 });

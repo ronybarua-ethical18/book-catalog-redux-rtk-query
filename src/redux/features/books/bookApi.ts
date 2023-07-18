@@ -7,14 +7,15 @@ const bookApi = api.injectEndpoints({
     }),
     singleBook: builder.query({
       query: (id) => `/books/${id}`,
+      providesTags: ['singleBook'],
     }),
     postReview: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/books/reviwe/${id}`,
-        method: 'POST',
+        url: `/books/reviews/${id}`,
+        method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ['books'],
+      invalidatesTags: ['singleBook'],
     }),
   }),
 });
