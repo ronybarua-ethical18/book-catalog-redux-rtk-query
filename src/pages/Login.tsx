@@ -4,23 +4,25 @@ import { toast } from '@/components/ui/use-toast';
 import { useLoginMutation } from '@/redux/features/user/userApi';
 import { setUser } from '@/redux/features/user/userSlice';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [login, { data: User, isSuccess }] = useLoginMutation();
+  const [login, { data: user, isSuccess }] = useLoginMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch=useDispatch()
 
   useEffect(() => {
-    if (User && isSuccess) {
+    if (user && isSuccess) {
       // toast.
-      setUser(User);
+      dispatch(setUser(user?.data));
       navigate('/books');
     }
-  }, [User, isSuccess, navigate]);
+  }, [user, dispatch, isSuccess, navigate]);
 
-  console.log('email, password', email, password);
+  console.log('email, password', user);
 
   return (
     <div className="w-1/3  m-auto mt-40 flex flex-col items-center justify-center p-4 shadow-md ">

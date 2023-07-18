@@ -15,19 +15,19 @@ export default function BookDetails() {
 
   return (
     <>
-      <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
-        <div className="w-[50%]">
-          <img src={book?.image} alt="" />
+      <div className="flex max-w-7xl mx-auto items-start  ">
+        <div className="w-[50%] m-auto">
+          <img src={book?.data?.img_url} alt="" />
         </div>
-        <div className="w-[50%] space-y-3">
-          <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Price: {book?.price}</p>
+        <div className="ml-10">
+          <h1 className="text-3xl font-semibold">{book?.data?.title}</h1>
+          <p className="text-xl font-semibold mb-10">Tk. {book?.data?.price}</p>
+          <p className="text-xl">{book?.data?.description}</p>
           {/* <ul className="space-y-1 text-lg">
             {product?.features?.map((feature: string) => (
               <li key={feature}>{feature}</li>
             ))}
           </ul> */}
-          <Button>Add to cart</Button>
         </div>
       </div>
     </>
