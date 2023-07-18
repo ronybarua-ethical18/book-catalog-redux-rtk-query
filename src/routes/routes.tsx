@@ -7,6 +7,8 @@ import Products from '@/pages/books/Books';
 import ProductDetails from '@/pages/books/BookDetails';
 import PrivateRoute from './PrivateRoute';
 import Books from '@/pages/books/Books';
+import BookDetails from '@/pages/books/BookDetails';
+import Login from '@/pages/Login';
 
 const routes = createBrowserRouter([
   {
@@ -22,14 +24,16 @@ const routes = createBrowserRouter([
         element: <Books />,
       },
       {
-        path: '/product-details/:id',
-        element: <ProductDetails />,
+        path: '/login',
+        element: <Login />,
       },
+
       {
         path: '/checkout',
         element: (
           <PrivateRoute>
             {/* <Checkout />, */}
+            <BookDetails />
           </PrivateRoute>
         ),
       },

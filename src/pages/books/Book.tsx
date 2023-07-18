@@ -1,20 +1,23 @@
-import React, { useEffect } from "react";
+import { Button } from '@/components/ui/button';
+import { BiLinkExternal } from 'react-icons/bi';
+import React, { useEffect } from 'react';
 // import { useDeleteBookMutation } from "../../features/api/apiSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 interface BookProps {
   book: {
     title: string;
     author: string;
     img_url: string;
-    genre: number;
-    _id:any
+    genre: string;
+    price: number;
+    _id: any;
   };
 }
 
-export default function Book({ book }: BookProps): JSX.Element{
+export default function Book({ book }: BookProps): JSX.Element {
   const navigate = useNavigate();
-  const { title, img_url, author, genre, _id } = book;
+  const { title, img_url, author, price, genre, _id } = book;
   // const [deleteBook, { isLoading, isError, isSuccess }] =
   //   useDeleteBookMutation();
   // const handleDelete = () => {
@@ -51,9 +54,18 @@ export default function Book({ book }: BookProps): JSX.Element{
 
         <div className="space-y-2 mt-4 h-full ml-4">
           <h4 className="text-2xl">{title}</h4>
-          <p className="text-xl">{author}</p>
-          
+          <p className="text-md">{author}</p>
+          <p className="text-md">{genre}</p>
+          <p className="text-xl">Tk. {price}</p>
+
           {/* <p className="lws-price">BDT {price}</p> */}
+        </div>
+
+        <div className='px-4 flex items-center justify-between'>
+          <Button>Add to wish list</Button>
+          <Link to={`/book-details/${_id}`}>
+          <div className='cursor-pointer'><BiLinkExternal /></div>
+          </Link>
         </div>
       </div>
     </div>
