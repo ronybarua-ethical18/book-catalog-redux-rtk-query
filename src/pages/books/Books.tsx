@@ -5,9 +5,6 @@ import Book from './Book';
 export default function Books(): ReactNode {
   const {
     data: books,
-    isLoading,
-    isSuccess,
-    isError,
   } = useGetBooksQuery(undefined);
 
   console.log('books', books);

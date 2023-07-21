@@ -1,4 +1,5 @@
 import { api } from '@/redux/api/apiSlice';
+import { toast } from 'react-toastify';
 
 const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,7 +17,11 @@ const userApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    
   }),
 });
 
-export const { useSignupMutation, useLoginMutation } = userApi;
+export const {
+  useSignupMutation,
+  useLoginMutation,
+} = userApi;

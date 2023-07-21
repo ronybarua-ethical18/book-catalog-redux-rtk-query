@@ -2,7 +2,9 @@ import { Button } from '@/components/ui/button';
 import { BiLinkExternal } from 'react-icons/bi';
 import React, { useEffect } from 'react';
 // import { useDeleteBookMutation } from "../../features/api/apiSlice";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useAddBookToWishlistMutation } from '@/redux/features/books/bookApi';
 
 interface BookProps {
   book: {
@@ -12,17 +14,22 @@ interface BookProps {
     genre: string;
     price: number;
     _id: any;
+    bookId?: any;
   };
 }
 
 export default function Book({ book }: BookProps): JSX.Element {
   const navigate = useNavigate();
-  const { title, img_url, author, price, genre, _id } = book;
+  const { title, img_url, author, price, genre, _id } = book || book;
+  const [addBookToWishlist, { data: wishlist, isSuccess }] =
+    useAddBookToWishlistMutation();
   // const [deleteBook, { isLoading, isError, isSuccess }] =
   //   useDeleteBookMutation();
   // const handleDelete = () => {
   //   deleteBook(id);
   // };
+  const location = useLocation();
+
   return (
     <div className="book-card shadow-md p-4 flex items-center ">
       <img
@@ -61,10 +68,33 @@ export default function Book({ book }: BookProps): JSX.Element {
           {/* <p className="lws-price">BDT {price}</p> */}
         </div>
 
-        <div className='px-4 flex items-center justify-between'>
-          <Button>Add to wish list</Button>
+        <div className="px-4 flex items-center justify-between">
+          {location.pathname !== '/wishlist' ? (
+            <Button
+              onClick={() =>
+                addBookToWishlist({ data: { bookId: _id } })
+                  .unwrap()
+                  .then((payload) => toast.success(payload.message))
+                  .catch((error) => toast.error(error.data.message))
+              }
+            >
+              Add to wish list
+            </Button>
+          ) : (
+            <Button
+              onClick={() =>
+                addBookToWishlist({ data: { bookId: _id } })
+                  .unwrap()
+                  .catch((error) => toast.error(error.data.message))
+              }
+            >
+              Remove from list
+            </Button>
+          )}
           <Link to={`/book-details/${_id}`}>
-          <div className='cursor-pointer'><BiLinkExternal /></div>
+            <div className="cursor-pointer">
+              <BiLinkExternal />
+            </div>
           </Link>
         </div>
       </div>

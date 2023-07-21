@@ -3,7 +3,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { usePostReviewMutation, useSingleBookQuery } from '@/redux/features/books/bookApi';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -12,17 +12,25 @@ export default function BookDetails() {
   const [postReview, {data:review}] = usePostReviewMutation()
   const [comment, setComment] = useState('')
 
-  console.log('data', book);
-  console.log('review', review);
+
 
   return (
     <>
-      <div className="flex max-w-7xl mx-auto items-start">
+      <div className="flex max-w-7xl mx-auto items-start mt-10">
+       
         <div className="w-[50%] m-auto">
           <img src={book?.data?.img_url} alt="" />
+         
         </div>
         <div className="ml-10">
+          <div className="flex justify-between">
+
           <h1 className="text-3xl font-semibold">{book?.data?.title}</h1>
+          <div className='flex text-right space-x-2'>
+          <Link to={`/edit-book/${id}`}><Button>Edit</Button></Link>
+          <Button>Delete</Button>
+        </div>
+          </div>
           <p className="text-xl font-semibold mb-5">Tk. {book?.data?.price}</p>
           <div>
             <h2 className="text-md font-medium">

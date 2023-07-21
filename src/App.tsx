@@ -1,6 +1,8 @@
 // import { onAuthStateChanged } from 'firebase/auth';
 import { Toaster } from './components/ui/Toaster';
 import MainLayout from './layouts/MainLayout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { auth } from './lib/firebase';
 // import { useAppDispatch } from './redux/hook';
 // import { setLoading, setUser } from './redux/features/user/userSlice';
@@ -26,6 +28,7 @@ function App() {
     <div>
       <Toaster />
       <MainLayout />
+      <ToastContainer />
     </div>
   );
 }
