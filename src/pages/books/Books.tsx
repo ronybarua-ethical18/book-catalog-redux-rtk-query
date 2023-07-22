@@ -3,9 +3,10 @@ import { useGetBooksQuery } from '../../redux/features/books/bookApi';
 import Book from './Book';
 
 export default function Books(): ReactNode {
-  const {
-    data: books,
-  } = useGetBooksQuery(undefined);
+  const { data: books } = useGetBooksQuery([
+    { title: '' }, // First query for books by title
+    { author: '' }, // Second query for books by author
+  ]);
 
   console.log('books', books);
   return (
