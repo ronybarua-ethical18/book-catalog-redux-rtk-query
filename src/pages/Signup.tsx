@@ -17,15 +17,10 @@ export default function Signup() {
   const navigate = useNavigate();
   const dispatch=useDispatch()
 
-  console.log("user", user)
-
   useEffect(() => {
     
     if (user && isSuccess) {
-     
-      // toast.
-      dispatch(setUser(user?.data));
-      navigate('/books');
+      navigate('/login');
     }
     
   }, [user, dispatch, isSuccess, navigate]);
