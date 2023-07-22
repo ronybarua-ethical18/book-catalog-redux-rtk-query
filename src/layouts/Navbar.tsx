@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { setUser } from '@/redux/features/user/userSlice';
 import { Input } from '@/components/ui/input';
+import { setSearchTerm } from '@/redux/features/books/bookSlice';
 // import { signOut } from 'firebase/auth';
 // import { auth } from '@/lib/firebase';
 // import { setUser } from '@/redux/features/user/userSlice';
@@ -24,13 +25,10 @@ export default function Navbar() {
 
   const dispatch = useAppDispatch();
 
-  const handleLogout = () => {
-    console.log('Logout');
-    // signOut(auth).then(() => {
-    // Sign-out successful.
-    // dispatch(setUser(null));
-    // });
-  };
+const handleSearch = (e:any) =>{
+  console.log(e.target.value)
+  dispatch(setSearchTerm(e.target.value))
+}
 
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
@@ -83,7 +81,7 @@ export default function Navbar() {
               )}
 
               <li>
-                 <Input placeholder='Search book'/>
+                 <Input placeholder='Search book' onChange={handleSearch}/>
               </li>
               <li>{/* <Cart /> */}</li>
               <li className="ml-5">
@@ -116,7 +114,6 @@ export default function Navbar() {
                     {/* )} */}
                     {/* {user.email && ( */}
                     <DropdownMenuItem
-                      onClick={handleLogout}
                       className="cursor-pointer"
                     >
                       Logout
