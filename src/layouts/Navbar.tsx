@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { setUser } from '@/redux/features/user/userSlice';
+import { Input } from '@/components/ui/input';
 // import { signOut } from 'firebase/auth';
 // import { auth } from '@/lib/firebase';
 // import { setUser } from '@/redux/features/user/userSlice';
@@ -82,9 +83,7 @@ export default function Navbar() {
               )}
 
               <li>
-                <Button variant="ghost">
-                  <HiOutlineSearch size="25" />
-                </Button>
+                 <Input placeholder='Search book'/>
               </li>
               <li>{/* <Cart /> */}</li>
               <li className="ml-5">
