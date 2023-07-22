@@ -64,6 +64,15 @@ const handleSearch = (e:any) =>{
                       <Link to="/wishlist">Wishlist</Link>
                     </Button>
                   </li>
+                  <li>
+                    <Button
+                      variant="link"
+                      asChild
+                      // onClick={() => dispatch(setUser(null))}
+                    >
+                      <Link to="/add-book">Add Book</Link>
+                    </Button>
+                  </li>
                 </>
               ) : (
                 <>
