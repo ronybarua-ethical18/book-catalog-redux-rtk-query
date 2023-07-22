@@ -6,7 +6,7 @@ const getAccessToken = (state: any) => state?.user?.user?.accessToken;
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8000/api/v1',
+    baseUrl: 'https://book-catelog-backend.vercel.app/api/v1',
     prepareHeaders: (headers, { getState }) => {
       // Get the access token from the Redux state
       const accessToken = getAccessToken(getState());

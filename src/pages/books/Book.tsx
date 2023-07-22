@@ -20,7 +20,7 @@ interface BookProps {
 
 export default function Book({ book }: BookProps): JSX.Element {
   const navigate = useNavigate();
-  const { title, img_url, author, price, genre, _id } = book || book;
+  const { title, img_url, author, price, genre, _id } = book || {};
   const [addBookToWishlist, { data: wishlist, isSuccess }] =
     useAddBookToWishlistMutation();
   // const [deleteBook, { isLoading, isError, isSuccess }] =
